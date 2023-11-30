@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(58, 58, 50);
+
+ 
+
+}
+.card {
+    width: 120px;
+    height: 180px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    margin: 5px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(128, 94, 94, 0.1);
+    background-color: rgb(179, 179, 130);
+}
+
+/* Style for the card's paragraph */
+.card p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Additional styling for the card container */
+.first-card-container, .second-card-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    text-decoration: none;
+    background-color: rgb(58, 58, 50);
+    color: rgb(195, 195, 98);
+    border-radius: 5px;
+  }
+  .button:hover {
+    background-color: rgb(128, 168, 49);
+  }
+
+
+
+
+nav {
+    background-color:   rgb(34, 34, 11);
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.top {
+    display: flex;
+    
+}
+ 
+
+.score-board {
+    width: 30%;
+    padding: 20px;
+    background-color: rgb(58, 58, 50);
+
+}
+
+.score-board table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.score-board th,
+.score-board td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.game-title {
+    flex-grow: 1;
+    padding: 20px;
+    background-color: rgb(58, 58, 50);
+}
+.player-container {
+    flex: 0 0 48%;
+    padding: 20px;
+    background-color: rgb(58, 58, 50);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.player-container h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+.card-container {
+    border: 1px solid #ccc;
+    height: 200px; /* Adjust as needed for the card size */
+    margin-top: 20px;
+}
+.registered{
+    text-align: center;
+    color: rgb(195, 195, 98);
+}
+.registered-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.registered-table th,
+.registered-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+

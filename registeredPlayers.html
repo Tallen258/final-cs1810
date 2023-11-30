@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="index.js" type="module"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <nav>  <a href="index.html" class="button">Go to Main Page</a>
+            <a href="playgame.html" class="button">Play Game</a>
+        </nav>
+        <div class="registered">
+
+            <h2>Registered Players</h2>
+            
+            <table class="registered-table">
+                <thead>
+                    <tr>
+                        <th>Column 1</th>
+                        <th>Column 2</th>
+                        <th>Column 3</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Data 1</td>
+                        <td>Data 2</td>
+                        <td>Data 3</td>
+                    </tr>
+                    <tr>
+                        <td>Data 4</td>
+                        <td>Data 5</td>
+                        <td>Data 6</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+        <form id="addPlayerForm">
+            <label for="playerName">Add Player:</label>
+            <input type="text" id="playerName" name="playerName" required>
+            <button type="submit">Add</button>
+        </form>
+    </body>
+    </html>

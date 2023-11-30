@@ -7,23 +7,23 @@ I chose this specific game because I thought it would give me a chance to do all
 
 
 *Mile stone 1
--build a dummy info for the api
--build html form to add regestered player
--build cards to be on the page
--build score table
--basic css styling
+- build a dummy info for the api
+- build html form to add regestered player
+- build cards to be on the page
+- build score table
+- basic css styling
 
 *Mile stone 2
--build card dealer
--build functionality for drag and drop to swap cards for players 
+- build card dealer
+- build functionality for drag and drop to swap cards for players 
 
 *Mile stone 3
--build score card funtionality deteriming who will win and who will lose.
--build the multiple pages with the links to pass between
+- build score card funtionality deteriming who will win and who will lose.
+- build the multiple pages with the links to pass between
 
 *Mile stone 4
--build api 
--call to api
--build filter function to filter between registered players
+- build api 
+- call to api
+- build filter function to filter between registered players
 
 
