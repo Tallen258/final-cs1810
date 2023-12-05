@@ -1,26 +1,31 @@
 
-export function PrintCards() {
-    const suites = ['Hearts', 'Diamonds', 'Clubs', 'Spades'];
-    const CardValues = ['Ace', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'Jack', 'Queen', 'King'];
-    const cardsContainer = document.getElementById("cardsContainer");
-    if (cardsContainer!==null){
-        let cardHTML = "";
+import { FetchData } from "/src/Service/svcgame.js"
 
-        
-        for (const suite of suites) {
-            for (const value of CardValues) {
-                cardHTML += `<div class = "card" draggable= "true">
-                <p> ${value} of ${suite} </p>
-                <br>
-                <h1> ${value}
-                </div>`
-            }
+export function PrintCards(cards) {
+    console.log(cards[0])
+    const cardsContainer = document.getElementById("cardsContainer");
+    if (cardsContainer !== null) {
+        let cardHTML = "";
+        for (let x = 0; x < cards.length; x++) {
+            cardHTML += `<div class = "card" draggable= "true">
+                    <p> ${cards[x].id} of ${cards[x].suite} </p>
+                    <br>
+                    <h1> ${cards[x].value}
+                    </div>`
         }
-        cardsContainer.innerHTML = cardHTML;    
+        cardsContainer.innerHTML = cardHTML;
+        // cards.foreach((card) => {
+        //     let cardHTML = "";
+        //     cardHTML += `<div class = "card" draggable= "true">
+        //             <p> ${card.value} of ${card.suite} </p>
+        //             <br>
+        //             <h1> ${card.value}
+        //             </div>`
+        //     cardsContainer.innerHTML = cardHTML;
+        // })
     }
 }
-
-function shuffleDeck(deck) {
+export function shuffleDeck(deck) {
     for (let i = deck.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [deck[i], deck[j]] = [deck[j], deck[i]];
@@ -43,22 +48,27 @@ function BuildDeck() {
 
     return deck;
 }
-function dealCards(deck) {
-    const player1Container = document.getElementById("p1")
-    const player2Container = document.getElementById('p2')
+export function displayCards(p1deck, p2deck) {
+    const player1Container = document.getElementById("card-container1")
+    const player2Container = document.getElementById('card-container2')
+player1Container.innerHTML=""
+player2Container.innerHTML=""
 
-    for (let i = 0; i < deck.length; i++) {
+    for (let i = 0; i < p1deck.length; i++) {
         const cardElement = document.createElement("div");
+        cardElement.id=p1deck[i].id +","+ p1deck[i].suite+"," +"p1"+","+p1deck[i].value
         cardElement.classList.add("card");
         cardElement.draggable = true;
-        cardElement.innerHTML = `<p> ${deck[i].value} of ${deck[i].suite}</p><br><h1>${deck[i].value}</h1>`;
-
-        if (i < deck.length / 2) {
-            player1Container.appendChild(cardElement);
-        }
-        else {
-            player2Container.appendChild(cardElement);
-        }
+        cardElement.innerHTML = `<p> ${p1deck[i].id} of ${p1deck[i].suite}</p><br><h1>${p1deck[i].value}</h1>`;
+        player1Container.appendChild(cardElement);
+    }
+    for (let i = 0; i < p2deck.length; i++) {
+        const cardElement = document.createElement("div");
+        cardElement.id=p2deck[i].id +","+ p2deck[i].suite + "," +"p2"+","+p2deck[i].value
+        cardElement.classList.add("card");
+        cardElement.draggable = true;
+        cardElement.innerHTML = `<p> ${p2deck[i].id} of ${p2deck[i].suite}</p><br><h1>${p2deck[i].value}</h1>`;
+        player2Container.appendChild(cardElement);
     }
 
 }
@@ -66,10 +76,14 @@ function dealCards(deck) {
 // Generating and shuffling the deck
 let deck = BuildDeck();
 
-console.log('Before shuffling:', deck);
+
 deck = shuffleDeck(deck);
-console.log('After shuffling:', deck);
 
 // Calling the function to print cards in HTML
-PrintCards();
-dealCards(deck);
+
+export default {
+    PrintCards,
+    shuffleDeck,
+    BuildDeck,
+    displayCards
+}

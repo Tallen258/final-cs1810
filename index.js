@@ -1,8 +1,12 @@
-import { GetCards } from "./src/dummy.js";
-import { PrintCards } from "./src/UI/uigame.js";
 
-PrintCards();
-console.log(PrintCards)
+import { FetchData } from "./src/Service/svcgame.js";
+import * as ui from "/src/UI/uigame.js"
+let cardData = await FetchData();
+
+ui.PrintCards(cardData);
+let cards = ui.shuffleDeck(cardData)
+ui.PrintCards(cards);
+
 
 
 function makeCardsDraggable() {
@@ -30,8 +34,8 @@ function sourcedrop(event) {
     event.preventDefault()
     const cardId = event.dataTransfer.getData("text/plain");
     const draggedCard = document.getElementById(cardId);
-    
-    if(!draggedCard) return;
+
+    if (!draggedCard) return;
     // Handle dropping the card into the player containers (player1Container, player2Container)
     const player1Container = document.getElementById("p1");
     const player2Container = document.getElementById("p2");
@@ -43,12 +47,14 @@ function sourcedrop(event) {
         player2Container.appendChild(draggedCard);
     }
 }
-PrintCards();
 makeCardsDraggable();
 const playerContainers = document.querySelectorAll(".player-container");
 
 playerContainers.forEach((container) => {
     container.addEventListener("dragover", allowDrop)
     container.addEventListener("drop", sourcedrop);
-
 });
+
+
+
+

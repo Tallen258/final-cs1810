@@ -119,5 +119,11 @@ nav {
     padding: 8px;
     text-align: center;
 }
+.gameboard{
 
+    max-width: 100%;
+    min-height: 10em;
+    max-height: 15em;
+    border: 1px solid white ;
+}
 
