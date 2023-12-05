@@ -26,7 +26,7 @@ I chose this specific game because I thought it would give me a chance to do all
 - call to api COMPLETE
 - build filter function to filter between registered players
 
-- build html form to add regestered player and abilty to save local storage
+- build html form to add regestered player and abilty to save local storage    COMPLETE
 - build filter function to filter between registered players
 - build score table and score at moment
 - build score card funtionality deteriming who will win and who will lose.

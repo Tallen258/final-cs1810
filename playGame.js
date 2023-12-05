@@ -1,4 +1,4 @@
-import { checkDeck, compareCard, dealCards } from "./src/Service/playgameSvc.js";
+import { dealCards , checkDeckSize } from "./src/Service/playgameSvc.js";
 import { FetchData } from "./src/Service/svcgame.js";
 import * as ui from "/src/UI/uigame.js"
 
@@ -10,6 +10,8 @@ let split = dealCards(cards)
 let p1deck = split[0]
 let p2deck = split[1]
 let battlCards = []
+console.log(checkDeckSize(p1deck))
+// ui.updateScore(p1deck, p2deck);
 
 ui.displayCards(p1deck, p2deck)
 makeCardsDraggable();
@@ -64,10 +66,15 @@ function sourcedrop(event) {
             addToWinner(battlCards, getOwner(winner))
             battlCards = []
             gameboard.innerHTML = ""
-
+            
+            // console.log(ui.updateScore(deck1,deck2))
         }
-        console.log(p1deck)
-        console.log(p2deck)
+        // console.log(p1deck)
+        // console.log(p2deck)
+        let score1= checkDeckSize(p1deck)
+        let score2=checkDeckSize(p2deck)
+        ui.updateScore(score1,score2)
+
     }
 
 
@@ -94,12 +101,16 @@ function compareBattleDeck(battleDeck) {
             return battleDeck[1]
         }
     }
+   
 
 }
+
 function addToWinner(cardID, winner) {
     if (winner === "p1") {
         p1deck.push({ id: getID(cardID[0]), suite: getSuite(cardID[0]), value: getValue(cardID[0]) })
         p1deck.push({ id: getID(cardID[1]), suite: getSuite(cardID[1]), value: getValue(cardID[1]) })
+        // ui.updateScore(deck1,deck2)
+       
 
     }
     else {
@@ -112,13 +123,13 @@ function removeCardFromDeck(cardId) {
     let value = getValue(cardId)
     let suite = getSuite(cardId)
     let temp = []
-    console.log(owner)
+    // console.log(owner)
   
-console.log(p1deck)
+// console.log(p1deck)
     if (owner === "p1") {
         
         for (let x = 0; x < p1deck.length; x++) {
-            console.log(p1deck[x])
+            // console.log(p1deck[x])
             if (value == p1deck[x].value && suite == p1deck[x].suite) { }
             else {
                 temp.push(p1deck[x])
