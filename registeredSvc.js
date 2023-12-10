@@ -24,16 +24,16 @@ function addPlayerForm(event) {
     button.addEventListener('click', () => {
         console.log(`Clicked ${playerName}`);
         addToPlayers(playerName);
-        SavePlayersPlaying(playerName);
     });
-
+    
     newRow.appendChild(button);
-
+    
     tableBody.appendChild(newRow);
-
+    
     SaveRegesteredPlayers(playerName);
-
+    
     addToPlayers(playerName)
+
 
 };
 
@@ -79,11 +79,12 @@ function restoreData() {
         tableBody.appendChild(newRow);
         button.addEventListener('click', () => {
             console.log(`Clicked ${element.Name}`);
+            let name = element.Name
             //save current name 
             addToPlayers(element.Name)
             console.log(PlayersPlayingPlayer1)
             console.log(PlayersPlayingPlayer2)
-            SavePlayersPlaying(playerName)
+        
         });
     })
 
@@ -132,29 +133,31 @@ function restoreData() {
 
 
 function addToPlayers(playerName) {
-    SavePlayersPlaying()
-
     if (PlayersPlayingPlayer1.length === 0) {
         PlayersPlayingPlayer1.push(playerName);
+        localStorage.setItem("PlayersPlayingPlayer1", JSON.stringify(PlayersPlayingPlayer1));
     }
     else if (!PlayersPlayingPlayer1.includes(playerName) && PlayersPlayingPlayer2.length === 0) {
         PlayersPlayingPlayer2.push(playerName);
+        localStorage.setItem("PlayersPlayingPlayer2", JSON.stringify(PlayersPlayingPlayer2));
     }
    
 
 }
 
-function SavePlayersPlaying() {
+// function SavePlayersPlaying(name) {
 
-    localStorage.setItem("PlayersPlayingPlayer1", JSON.stringify(PlayersPlayingPlayer1));
-    localStorage.setItem("PlayersPlayingPlayer2", JSON.stringify(PlayersPlayingPlayer2));
+//     localStorage.setItem("PlayersPlayingPlayer1", JSON.stringify(PlayersPlayingPlayer1));
+//     localStorage.setItem("PlayersPlayingPlayer2", JSON.stringify(PlayersPlayingPlayer2));
 
-}
+// }
 
 document.getElementById('reset-players').addEventListener('click', function () {
     reset();
 });
 function reset() {
+    PlayersPlayingPlayer1=[]
+    PlayersPlayingPlayer2=[]
     localStorage.removeItem("PlayersPlayingPlayer1")
     localStorage.removeItem("PlayersPlayingPlayer2")
 }

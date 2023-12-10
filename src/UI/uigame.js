@@ -47,55 +47,56 @@ function BuildDeck() {
     return deck;
 }
 export function displayCards(p1deck, p2deck) {
+    console.log(displayCards)
+    console.log([p1deck,p2deck])
     const player1Container = document.getElementById("card-container1")
     const player2Container = document.getElementById('card-container2')
-player1Container.innerHTML=""
-player2Container.innerHTML=""
+    player1Container.innerHTML = ""
+    player2Container.innerHTML = ""
 
     for (let i = 0; i < p1deck.length; i++) {
         const cardElement = document.createElement("div");
-        cardElement.id=p1deck[i].id +","+ p1deck[i].suite+"," +"p1"+","+p1deck[i].value
+        cardElement.id = p1deck[i].id + "," + p1deck[i].suite + "," + "p1" + "," + p1deck[i].value
         cardElement.classList.add("card");
         cardElement.draggable = true;
+        cardElement.style = "background-color: blue;"
         cardElement.innerHTML = `<p> ${p1deck[i].id} of ${p1deck[i].suite}</p><br><h1>${p1deck[i].value}</h1>`;
         player1Container.appendChild(cardElement);
     }
     for (let i = 0; i < p2deck.length; i++) {
         const cardElement = document.createElement("div");
-        cardElement.id=p2deck[i].id +","+ p2deck[i].suite + "," +"p2"+","+p2deck[i].value
+        cardElement.id = p2deck[i].id + "," + p2deck[i].suite + "," + "p2" + "," + p2deck[i].value
         cardElement.classList.add("card");
         cardElement.draggable = true;
+        cardElement.style ="background-color: red;"
         cardElement.innerHTML = `<p> ${p2deck[i].id} of ${p2deck[i].suite}</p><br><h1>${p2deck[i].value}</h1>`;
         player2Container.appendChild(cardElement);
     }
 
 }
-export function updateScore(p1score,p2score){
+export function updateScore(p1score, p2score) {
     console.log(updateScore)
     // const playerName= getPlayerName();
     // console.log("selected Player:", playerName)
     let p1 = document.getElementById("p1")
     let p2 = document.getElementById("p2")
-        console.log("p1 deck",p1score)
-        p1.innerHTML = `<td>${p1score}</td>`;
+    console.log("p1 deck", p1score)
+    p1.innerHTML = `<td>${p1score}</td>`;
 
-        p2.innerHTML = `<td>${p2score}</td>`;
+    p2.innerHTML = `<td>${p2score}</td>`;
 
 }
 
 
 
-function getPlayerNames(){
+function getPlayerNames() {
     let playersPlayingPlayer1 = JSON.parse(localStorage.getItem("PlayersPlayingPlayer1"));
     let playersPlayingPlayer2 = JSON.parse(localStorage.getItem("PlayersPlayingPlayer2"));
 
-console.log(playersPlayingPlayer1)
-console.log(playersPlayingPlayer2)
-
-return {
-    playersPlayingPlayer1,
-    playersPlayingPlayer2
-};
+    return {
+        playersPlayingPlayer1,
+        playersPlayingPlayer2
+    };
 }
 export function updatePlayerNames() {
     const playerNames = getPlayerNames();
@@ -104,8 +105,8 @@ export function updatePlayerNames() {
     let p2 = document.getElementById("p2name");
 
     // Join the player names into a string separated by a comma (or another suitable delimiter)
-    p1.innerHTML = `<td>${playerNames.playersPlayingPlayer1.join(', ')}</td>`;
-    p2.innerHTML = `<td>${playerNames.playersPlayingPlayer2.join(', ')}</td>`;
+    p1.innerHTML = `<td>${playerNames.playersPlayingPlayer1}, </td>`;
+    p2.innerHTML = `<td>${playerNames.playersPlayingPlayer2}, </td>`;
 }
 // Generating and shuffling the deck
 let deck = BuildDeck();

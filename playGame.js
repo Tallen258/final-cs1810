@@ -8,6 +8,8 @@ let cardData = await FetchData();
 
 let cards = ui.shuffleDeck(cardData)
 let split = dealCards(cards)
+// let l = split.length/2;
+// split.forEach((card)=>{})
 let p1deck = split[0]
 let p2deck = split[1]
 
@@ -20,18 +22,21 @@ let battlCards = []
 
 ui.displayCards(p1deck, p2deck)
 makeCardsDraggable();
+const playerContainers = document.querySelectorAll(".player-container");
+playerContainers.forEach((container) => {
+    container.addEventListener("dragover", allowDrop)
+    container.addEventListener("drop", sourcedrop);
 
+});
 
 function makeCardsDraggable() {
     const cards = document.querySelectorAll(".card");
-
     cards.forEach((card) => {
         card.draggable = true;
         card.addEventListener("dragstart", dragStart)
         card.addEventListener("drop", sourcedrop);
     });
 }
-
 function dragStart(event) {
     console.log("Drag Start")
     // console.log(event.target.id)
@@ -41,12 +46,9 @@ function dragStart(event) {
     event.currentTarget.classList.add("dragging");
 
 }
-
-
 function allowDrop(event) {
     event.preventDefault();
 }
-
 function sourcedrop(event) {
     event.preventDefault()
     // console.log("drop")
@@ -58,37 +60,25 @@ function sourcedrop(event) {
     // Handle dropping the card into the player containers (player1Container, player2Container)
     const gameboard = document.getElementById("gameboard")
 
-
     //if deck has 1 card if same check if card in balttle deck is the same player as dropping card
     if (canDrop(cardId, battlCards)) {
         gameboard.appendChild(draggedCard);
         battlCards.push(cardId)
         removeCardFromDeck(cardId)
-
         if (battlCards.length >= 2) {
             let winner = compareBattleDeck(battlCards)
             console.log(winner);
             addToWinner(battlCards, getOwner(winner))
             battlCards = []
             gameboard.innerHTML = ""
-
             // console.log(ui.updateScore(deck1,deck2))
         }
-        // console.log(p1deck)
-        // console.log(p2deck)
         let score1 = p1deck.length
         let score2 = p2deck.length
         ui.updateScore(score1, score2)
         ui.updatePlayerNames()
-
     }
-
-
-    //else add card to deck
-
     event.currentTarget.classList.remove("dragging");
-
-
     ui.displayCards(p1deck, p2deck)
     makeCardsDraggable();
 
@@ -96,7 +86,6 @@ function sourcedrop(event) {
     //check if deck if battlecards >= 2 compare and cards to find winner move cards to winner then clear out battle cards
 
 }
-
 function compareBattleDeck(battleDeck) {
     
     console.log(battleDeck)
@@ -112,25 +101,28 @@ function compareBattleDeck(battleDeck) {
         }
     }
 
-
 }
-
 function addToWinner(cardID, winner) {
+    console.log(addToWinner)
     console.log(winner)
+    
     if (winner === "p1") {
+        
         p1deck.push({ id: getID(cardID[0]), suite: getSuite(cardID[0]), value: getValue(cardID[0]) })
         p1deck.push({ id: getID(cardID[1]), suite: getSuite(cardID[1]), value: getValue(cardID[1]) })
-      
         
-
-
     }
     else {
         p2deck.push({ id: getID(cardID[0]), suite: getSuite(cardID[0]), value: getValue(cardID[0]) })
         p2deck.push({ id: getID(cardID[1]), suite: getSuite(cardID[1]), value: getValue(cardID[1]) })
     }
+    
+    console.log(p1deck)
+    console.log(p2deck)
 }
 function removeCardFromDeck(cardId) {
+    console.log(removeCardFromDeck)
+    
     let owner = getOwner(cardId)
     let value = getValue(cardId)
     let suite = getSuite(cardId)
@@ -160,8 +152,8 @@ function removeCardFromDeck(cardId) {
     }
 
 }
-
 function canDrop(card, battleDeck) {
+    
     if (battleDeck.length <= 0) {
         return true
     }
@@ -177,18 +169,15 @@ function canDrop(card, battleDeck) {
     return true
 
 }
-
 function getValue(cardId) {
 
-    console.log(cardId)
+    console.log(getValue)
     let deckID = cardId.split(",")
     let playerDeck = parseInt(deckID[3])
-    
-    console.log(deckID[3])
     return playerDeck
 }
 function getID(cardId) {
-    // console.log(cardId)
+    console.log(getID)
     let deckID = cardId.split(",")
     let playerDeck = deckID[0]
     // console.log(deckID[0])
@@ -196,7 +185,7 @@ function getID(cardId) {
     return playerDeck
 }
 function getSuite(cardId) {
-    // console.log(cardId)
+    console.log(getSuite)
     let deckID = cardId.split(",")
     let playerDeck = deckID[1]
     // console.log(deckID[1])
@@ -211,14 +200,6 @@ function getOwner(cardId) {
 
     return playerDeck
 }
-makeCardsDraggable();
-const playerContainers = document.querySelectorAll(".player-container");
-
-playerContainers.forEach((container) => {
-    container.addEventListener("dragover", allowDrop)
-    container.addEventListener("drop", sourcedrop);
-
-});
 function checkEmptyDeckWinner(p1deck, p2deck) {
     console.log([p1deck,p2deck])
     const p1DeckSize = p1deck.length;
@@ -227,7 +208,6 @@ function checkEmptyDeckWinner(p1deck, p2deck) {
     p1DeckSize === 0 ? console.log("Player 2 wins!") :
     p2DeckSize === 0 ? console.log("Player 1 wins!") : null;
 }
-
 function updateScoresAndCheckWinner(p1deck, p2deck) {
     let score1 = p1deck.length;
     let score2 = p2deck.length;
