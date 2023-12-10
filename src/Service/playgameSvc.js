@@ -46,8 +46,4 @@ export function checkDeck(deck) {
 
 //decide who will win and lose 
 
-export function checkDeckSize(deck){
-    
-    return deck.length
 
-}

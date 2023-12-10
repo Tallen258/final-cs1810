@@ -3,9 +3,9 @@ import { FetchData } from "./src/Service/svcgame.js";
 import * as ui from "/src/UI/uigame.js"
 let cardData = await FetchData();
 
-ui.PrintCards(cardData);
-let cards = ui.shuffleDeck(cardData)
-ui.PrintCards(cards);
+// ui.PrintCards(cardData);
+// let cards = ui.shuffleDeck(cardData)
+// ui.PrintCards(cards);
 
 
 

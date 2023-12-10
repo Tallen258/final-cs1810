@@ -1,7 +1,4 @@
 
-import { FetchData } from "/src/Service/svcgame.js"
-import {checkDeckSize } from "/src/Service/playgameSvc.js"
-
 export function PrintCards(cards) {
     console.log(cards[0])
     const cardsContainer = document.getElementById("cardsContainer");
@@ -86,10 +83,30 @@ export function updateScore(p1score,p2score){
 
 }
 
-// function getPlayerName(){
-//  return localStorage.getItem('selectedPlayer')   
-// }
 
+
+function getPlayerNames(){
+    let playersPlayingPlayer1 = JSON.parse(localStorage.getItem("PlayersPlayingPlayer1"));
+    let playersPlayingPlayer2 = JSON.parse(localStorage.getItem("PlayersPlayingPlayer2"));
+
+console.log(playersPlayingPlayer1)
+console.log(playersPlayingPlayer2)
+
+return {
+    playersPlayingPlayer1,
+    playersPlayingPlayer2
+};
+}
+export function updatePlayerNames() {
+    const playerNames = getPlayerNames();
+
+    let p1 = document.getElementById("p1name");
+    let p2 = document.getElementById("p2name");
+
+    // Join the player names into a string separated by a comma (or another suitable delimiter)
+    p1.innerHTML = `<td>${playerNames.playersPlayingPlayer1.join(', ')}</td>`;
+    p2.innerHTML = `<td>${playerNames.playersPlayingPlayer2.join(', ')}</td>`;
+}
 // Generating and shuffling the deck
 let deck = BuildDeck();
 
@@ -103,5 +120,6 @@ export default {
     shuffleDeck,
     BuildDeck,
     displayCards,
-    updateScore
+    updateScore,
+    updatePlayerNames
 }

@@ -1,5 +1,6 @@
-import { dealCards , checkDeckSize } from "./src/Service/playgameSvc.js";
+import { dealCards} from "./src/Service/playgameSvc.js";
 import { FetchData } from "./src/Service/svcgame.js";
+import { updatePlayerNames } from "./src/UI/uigame.js";
 import * as ui from "/src/UI/uigame.js"
 
 let cardData = await FetchData();
@@ -9,8 +10,12 @@ let cards = ui.shuffleDeck(cardData)
 let split = dealCards(cards)
 let p1deck = split[0]
 let p2deck = split[1]
+
+
+p1deck=[p1deck[0],p1deck[1]]//remove when done testing
+p2deck=[p2deck[0],p2deck[1]]
 let battlCards = []
-console.log(checkDeckSize(p1deck))
+
 // ui.updateScore(p1deck, p2deck);
 
 ui.displayCards(p1deck, p2deck)
@@ -66,14 +71,15 @@ function sourcedrop(event) {
             addToWinner(battlCards, getOwner(winner))
             battlCards = []
             gameboard.innerHTML = ""
-            
+
             // console.log(ui.updateScore(deck1,deck2))
         }
         // console.log(p1deck)
         // console.log(p2deck)
-        let score1= checkDeckSize(p1deck)
-        let score2=checkDeckSize(p2deck)
-        ui.updateScore(score1,score2)
+        let score1 = p1deck.length
+        let score2 = p2deck.length
+        ui.updateScore(score1, score2)
+        ui.updatePlayerNames()
 
     }
 
@@ -86,14 +92,18 @@ function sourcedrop(event) {
     ui.displayCards(p1deck, p2deck)
     makeCardsDraggable();
 
-
+    updateScoresAndCheckWinner(p1deck,p2deck)
     //check if deck if battlecards >= 2 compare and cards to find winner move cards to winner then clear out battle cards
 
 }
+
 function compareBattleDeck(battleDeck) {
+    
+    console.log(battleDeck)
 
 
     if (battleDeck.length == 2) {
+
         if (getValue(battleDeck[0]) > getValue(battleDeck[1])) {
             return battleDeck[0]
         }
@@ -101,16 +111,18 @@ function compareBattleDeck(battleDeck) {
             return battleDeck[1]
         }
     }
-   
+
 
 }
 
 function addToWinner(cardID, winner) {
+    console.log(winner)
     if (winner === "p1") {
         p1deck.push({ id: getID(cardID[0]), suite: getSuite(cardID[0]), value: getValue(cardID[0]) })
         p1deck.push({ id: getID(cardID[1]), suite: getSuite(cardID[1]), value: getValue(cardID[1]) })
-        // ui.updateScore(deck1,deck2)
-       
+      
+        
+
 
     }
     else {
@@ -124,10 +136,10 @@ function removeCardFromDeck(cardId) {
     let suite = getSuite(cardId)
     let temp = []
     // console.log(owner)
-  
-// console.log(p1deck)
+
+    // console.log(p1deck)
     if (owner === "p1") {
-        
+
         for (let x = 0; x < p1deck.length; x++) {
             // console.log(p1deck[x])
             if (value == p1deck[x].value && suite == p1deck[x].suite) { }
@@ -144,7 +156,7 @@ function removeCardFromDeck(cardId) {
                 temp.push(p2deck[x])
             }
         }
-        p2deck=temp
+        p2deck = temp
     }
 
 }
@@ -165,28 +177,38 @@ function canDrop(card, battleDeck) {
     return true
 
 }
+
 function getValue(cardId) {
-    // console.log(cardId)
+
+    console.log(cardId)
     let deckID = cardId.split(",")
-    let playerDeck = deckID[3]
+    let playerDeck = parseInt(deckID[3])
+    
+    console.log(deckID[3])
     return playerDeck
 }
 function getID(cardId) {
     // console.log(cardId)
     let deckID = cardId.split(",")
     let playerDeck = deckID[0]
+    // console.log(deckID[0])
+
     return playerDeck
 }
 function getSuite(cardId) {
     // console.log(cardId)
     let deckID = cardId.split(",")
     let playerDeck = deckID[1]
+    // console.log(deckID[1])
+
     return playerDeck
 }
 function getOwner(cardId) {
     // console.log(cardId)
     let deckID = cardId.split(",")
     let playerDeck = deckID[2]
+    // console.log(deckID[2])
+
     return playerDeck
 }
 makeCardsDraggable();
@@ -197,6 +219,21 @@ playerContainers.forEach((container) => {
     container.addEventListener("drop", sourcedrop);
 
 });
+function checkEmptyDeckWinner(p1deck, p2deck) {
+    console.log([p1deck,p2deck])
+    const p1DeckSize = p1deck.length;
+    const p2DeckSize = p2deck.length;
 
+    p1DeckSize === 0 ? console.log("Player 2 wins!") :
+    p2DeckSize === 0 ? console.log("Player 1 wins!") : null;
+}
 
+function updateScoresAndCheckWinner(p1deck, p2deck) {
+    let score1 = p1deck.length;
+    let score2 = p2deck.length;
+    ui.updateScore(score1, score2);
+    ui.updatePlayerNames()
+   
 
+    checkEmptyDeckWinner(p1deck, p2deck); // Check if a deck is empty to display the winner
+}

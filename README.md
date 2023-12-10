@@ -27,8 +27,10 @@ I chose this specific game because I thought it would give me a chance to do all
 - build filter function to filter between registered players
 
 - build html form to add regestered player and abilty to save local storage    COMPLETE
-- build filter function to filter between registered players
-- build score table and score at moment
+- build filter function to filter between registered players COMPLETED!!
+- build score table and score at moment     COMPLETED!!
+- build a rules list   COMPLETED!!
+- build a title page with image COMPLETED!!
 - build score card funtionality deteriming who will win and who will lose.
-- 
+- build functionality for accepting player name and writing it out.
 
