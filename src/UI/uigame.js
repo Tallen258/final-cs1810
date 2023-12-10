@@ -104,9 +104,13 @@ export function updatePlayerNames() {
     let p1 = document.getElementById("p1name");
     let p2 = document.getElementById("p2name");
 
+    if (!playerNames.playersPlayingPlayer1===null){
+        p1.innerHTML = `<td>${playerNames.playersPlayingPlayer1}, </td>`;
+    }
+    if(!playerNames.playersPlayingPlayer2===null){
+        p2.innerHTML = `<td>${playerNames.playersPlayingPlayer2}, </td>`;
+    }
     // Join the player names into a string separated by a comma (or another suitable delimiter)
-    p1.innerHTML = `<td>${playerNames.playersPlayingPlayer1}, </td>`;
-    p2.innerHTML = `<td>${playerNames.playersPlayingPlayer2}, </td>`;
 }
 // Generating and shuffling the deck
 let deck = BuildDeck();
