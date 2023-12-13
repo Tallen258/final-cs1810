@@ -3,6 +3,8 @@ body {
     padding: 0;
     font-family: Arial, sans-serif;
     background-color: rgb(58, 58, 50);
+    color: rgb(195, 195, 98);
+
 }
 
 .card {
@@ -16,26 +18,26 @@ body {
     text-align: center;
     box-shadow: 0 4px 8px rgba(128, 94, 94, 0.1);
     background-color: rgb(179, 179, 130);
+    opacity: 1;
+    transition: transform 0.3s ease-in-out;
 }
 
 .card:hover {
-    opacity: 70%;
-
+    opacity: 60%;
+    transform: scale(1.2)
 }
 
-/* Style for the card's paragraph */
 .card p {
     margin: 0;
     font-size: 16px;
 }
 
-/* Additional styling for the card container */
 .first-card-container,
 .second-card-container {
     margin-top: 20px;
     text-align: center;
 }
-
+button,
 .button {
     display: inline-block;
     padding: 10px 20px;
@@ -45,13 +47,11 @@ body {
     border-radius: 5px;
 }
 
+
+button:hover,
 .button:hover {
     background-color: rgb(128, 168, 49);
 }
-
-
-
-
 nav {
     background-color: rgb(34, 34, 11);
     color: white;
@@ -64,12 +64,10 @@ nav {
 
 }
 
-
 .score-board {
     width: 30%;
     padding: 20px;
     background-color: rgb(58, 58, 50);
-
 }
 
 .score-board table {
@@ -79,9 +77,10 @@ nav {
 
 .score-board th,
 .score-board td {
-    border: 1px solid #ddd;
+    border: 1px solid #797979;
     padding: 8px;
     text-align: left;
+    color: rgb(195, 195, 98);
 }
 
 .game-title {
@@ -98,7 +97,7 @@ nav {
     flex: 0 0 48%;
     padding: 20px;
     background-color: rgb(58, 58, 50);
-    border: 1px solid #ddd;
+    border: 1px solid #797979;
     border-radius: 5px;
     box-sizing: border-box;
 }
@@ -111,11 +110,11 @@ nav {
 .card-container {
     border: 1px solid #ccc;
     height: 200px;
-    /* Adjust as needed for the card size */
     margin-top: 20px;
 
 }
 
+/* registered */
 .registered {
     text-align: center;
     color: rgb(195, 195, 98);
@@ -125,11 +124,12 @@ nav {
     width: 80%;
     border-collapse: collapse;
     margin-top: 20px;
+    color: rgb(195, 195, 98);
 }
 
 .registered-table th,
 .registered-table td {
-    border: 1px solid #ddd;
+    border: 1px solid #686666;
     padding: 8px;
     text-align: center;
 }
@@ -139,15 +139,14 @@ nav {
     max-width: 100%;
     min-height: 10em;
     max-height: 15em;
-    border: 1px solid white;
+    border: 1px solid rgb(94, 93, 93);
     text-align: center;
-    background-color: #ccc;
+    background-color: #543c3c;
 }
 
 .player-container {
-    background-color: rgb(132, 131, 131);
+    background-color: rgb(86, 86, 86);
 }
-
 
 .rules,
 .sub-rules {
@@ -155,21 +154,16 @@ nav {
     padding: 1em;
 }
 
-/* Centering the ul */
 .rules {
     margin: 0 auto;
     max-width: 300px;
-    /* Adjust the width as needed */
 }
 
-/* Centering the ol */
 .sub-rules {
     margin: 0 auto;
     max-width: 300px;
-    /* Adjust the width as needed */
     list-style-position: inside;
 }
-
 
 .writeup {
     color: rgb(141, 141, 69);
@@ -177,7 +171,6 @@ nav {
     text-align: center;
     font-weight: bold;
     font-size: larger;
-
 }
 
 .background-element {
@@ -188,6 +181,7 @@ nav {
     background-position: center;
     height: 90vh;
 }
+
 table{
     margin: auto;
     padding: 0%;
@@ -198,4 +192,15 @@ table button {
 
 }
 
-
+.playerform {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    max-width: 30%;
+    margin: 0 auto;
+    color: rgb(141, 141, 69);    
+}
+ .buttonstyle{
+width: 30%;
+ }

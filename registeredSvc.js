@@ -4,8 +4,6 @@ let PlayersPlayingPlayer1 = [];
 let PlayersPlayingPlayer2 = [];
 // console.log(registeredPlayers)
 restoreData();
-
-
 function addPlayerForm(event) {
     event.preventDefault();
     console.log(addPlayerForm)
@@ -25,18 +23,11 @@ function addPlayerForm(event) {
         console.log(`Clicked ${playerName}`);
         addToPlayers(playerName);
     });
-    
     newRow.appendChild(button);
-    
     tableBody.appendChild(newRow);
-    
     SaveRegesteredPlayers(playerName);
-    
     addToPlayers(playerName)
-
-
 };
-
 
 function SaveRegesteredPlayers(playerName) {
     let registeredPlayers = GetData();
@@ -45,9 +36,7 @@ function SaveRegesteredPlayers(playerName) {
     registeredPlayers.push(playerObject)
 
     localStorage.setItem("registeredPlayers", JSON.stringify(registeredPlayers))
-
 }
-
 
 function GetData() {
     let registeredPlayers = JSON.parse(localStorage.getItem("registeredPlayers"));
@@ -56,21 +45,19 @@ function GetData() {
         return []
     }
     return registeredPlayers;
-
 }
 
 function restoreData() {
     // console.log(restoreData)
-
     let registeredPlayers = GetData();
     // console.log(registeredPlayers)
     const tableBody = document.querySelector('.registered-table tbody');
     tableBody.innerHTML = ""
-
     registeredPlayers.forEach(element => {
         console.log(element.Name)
         const newRow = document.createElement('tr');
         const cell1 = document.createElement('td');
+
         const button = document.createElement('button')
         button.appendChild(cell1)
         cell1.textContent = element.Name;
@@ -84,53 +71,34 @@ function restoreData() {
             addToPlayers(element.Name)
             console.log(PlayersPlayingPlayer1)
             console.log(PlayersPlayingPlayer2)
-        
         });
     })
-
-
-
-
-
+    // const container = getElementById("playerform")
     const filter = document.createElement("form");
 
     filter.innerHTML += `
+    <div class= "playerform"> 
     <label>Filter by Name</label>
     <input type="text" id="filter"></input>
+    </div>
     `;
-
+    // container.appendChild(filter)
     document.body.appendChild(filter);
-
     const filterInput = document.getElementById("filter");
 
     filterInput.addEventListener("input", (event) => {
         event.preventDefault();
         const filterValue = event.target.value.toLowerCase();
+        // Get all rows inside the table
+        const rows = document.querySelectorAll('.registered-table tbody tr');
 
-        // Get all registered players
-        let registeredPlayers = GetData();
-
-        // Filter the players based on the input value
-        let filteredPlayers = registeredPlayers.filter(player => {
-            return player.Name.toLowerCase().includes(filterValue);
+        rows.forEach(row => {
+            const playerName = row.textContent.toLowerCase();
+            // Show/hide rows based on the filter value
+            row.style.display = playerName.includes(filterValue) ? 'table-row' : 'none';
         });
-
-        // Clear the table body
-        const tableBody = document.querySelector('.registered-table tbody');
-        tableBody.innerHTML = "";
-
-        // Display filtered players
-        filteredPlayers.forEach(player => {
-            const newRow = document.createElement('tr');
-            const cell1 = document.createElement('td');
-            cell1.textContent = player.Name;
-            newRow.appendChild(cell1);
-            tableBody.appendChild(newRow);
-        });
-    })
+    });
 }
-
-
 
 function addToPlayers(playerName) {
     if (PlayersPlayingPlayer1.length === 0) {
@@ -141,23 +109,15 @@ function addToPlayers(playerName) {
         PlayersPlayingPlayer2.push(playerName);
         localStorage.setItem("PlayersPlayingPlayer2", JSON.stringify(PlayersPlayingPlayer2));
     }
-   
-
 }
-
-// function SavePlayersPlaying(name) {
-
-//     localStorage.setItem("PlayersPlayingPlayer1", JSON.stringify(PlayersPlayingPlayer1));
-//     localStorage.setItem("PlayersPlayingPlayer2", JSON.stringify(PlayersPlayingPlayer2));
-
-// }
 
 document.getElementById('reset-players').addEventListener('click', function () {
     reset();
 });
+
 function reset() {
-    PlayersPlayingPlayer1=[]
-    PlayersPlayingPlayer2=[]
+    PlayersPlayingPlayer1 = []
+    PlayersPlayingPlayer2 = []
     localStorage.removeItem("PlayersPlayingPlayer1")
     localStorage.removeItem("PlayersPlayingPlayer2")
 }

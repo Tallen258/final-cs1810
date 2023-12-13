@@ -7,7 +7,6 @@ export function shuffleDeck(deck) {
     }
     return deck;
 }
-
 export function dealCards(deck) {
     let p1 = []
     let p2 = []
@@ -23,13 +22,11 @@ export function dealCards(deck) {
     return [p1, p2]
 }
 export function compareCard(card1, card2) {
-
     if (card1 > card2) {
         return card1
     }
     else
         return card2;
-
 }
 export function checkDeck(deck) {
     // check to see if the selected data is from p1 or p2 
@@ -41,9 +38,4 @@ export function checkDeck(deck) {
     }
     else
         decks.push(deck)
-
 }
-
-//decide who will win and lose 
-
-

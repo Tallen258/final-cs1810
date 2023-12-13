@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html>
-    <head>
-<script src="index.js" type="module"></script>
-<link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <Nav>
-            <a href="playgame.html" class="button">Play Game</a>
-            <a href="registeredPlayers.html" class="button">Go to Registered Players</a>
-        </Nav>
 
-        <!-- add form for registered player -->
-        <div class="registered-players" id="registered-players"> 
-            
-        </div>
-        <div class="background-element">
-           
-        
-            <div class="writeup">
-                
-                <h1>WAR</h1>
-                <p>In this version of war we will have two players who are going to battle. The name of the game is war. 
-                    the goal of this game is to collect all the cards of the opponent. For this version you will be asked to drag and drop your card
-                    to play into the battle box, which after your opponent presents his card the game will compare and add the winners cards to the 
-                    deck.
-                </p>
-                <ul class="rules"> Rules
+<head>
+    <script src="index.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <Nav>
+        <a href="index.html" class="button">Go to Main Page</a>
+        <a href="registeredPlayers.html" class="button">Go to Registered Players</a>
+        <a href="playgame.html" class="button">Play Game</a>
+
+    </Nav>
+
+    <div class="registered-players" id="registered-players">
+
+    </div>
+    <div class="background-element">
+
+        <main class="writeup">
+            <h1>WAR</h1>
+
+            <article>
+                <p>In this version of war, two players will battle it out. The name of the game is war, and the goal is
+                    to collect all the cards of the opponent. For this version, you will be asked to drag and drop your
+                    card to play into the battle box. After your opponent presents their card, The game will compare and
+                    add the winner's cards to the deck.</p>
+
+                <h2>Rules</h2>
+                <ul class="rules">
                     <li>One player goes at a time</li>
                     <li>Lower card loses</li>
-                    <li>Winner is who obtains the whole deck</li>
+                    <li>Winner is the one who obtains the whole deck</li>
                 </ul>
-                
-                <ol class="rules"> Sub-Rules
+            </article>
+
+            <!-- Aside section -->
+            <aside>
+                <h2>Sub-Rules</h2>
+                <ol class="rules">
                     <li>Players must have fun</li>
-                    <li>shoot for victory</li>
+                    <li>Shoot for victory</li>
                     <li>No mercy</li>
-                    
                 </ol>
-            </div>
-        </div>
-        </body>
-        </html>
+                <!-- Additional content, sidebar, or related information can be placed here -->
+            </aside>
+        </main>
+    </div>
+</body>
+
+</html>

@@ -1,39 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script src="registeredSvc.js" type="module"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <nav>  <a href="index.html" class="button">Go to Main Page</a>
-            <a href="playgame.html" class="button">Play Game</a>
-        </nav>
-        <div class="registered">
 
-            <h2>Registered Players</h2>
-            
-            <table class="registered-table">
-                <thead>
-                    <tr>
-     
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        
-                    </tr>
-                    <tr>
-                       
-                    </tr>
-                    <!-- Add more rows as needed -->
-                </tbody>
-            </table>
-        </div>
+<head>
+    <script src="registeredSvc.js" type="module"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <Nav>
+        <a href="index.html" class="button">Go to Main Page</a>
+        <a href="registeredPlayers.html" class="button">Go to Registered Players</a>
+        <a href="playgame.html" class="button">Play Game</a>
+    </Nav>
+    <div class="registered">
+        <h2>Registered Players</h2>
+        <table class="registered-table">
+            <thead>
+                <tr>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="playerform">
+
         <form id="addPlayerForm">
             <label for="playerName">Add Player:</label>
-            <input type="text" id="playerName" name="playerName" required>
-            <button type="submit">Add</button>
+            <input type="text" id="playerName" name="playerName" class="buttonstyle" required>
+            <button type="submit" class="buttonstyle">Add</button>
         </form>
-<button type="reset" id="reset-players" class="reset-players">Reset Players</button>
-    </body>
-    </html>
+        <button type="reset" id="reset-players">Reset Players</button>
+    </div>
+</body>
+
+</html>
